@@ -18,6 +18,7 @@ class ExchangeFactory:
         'grvt': 'exchanges.grvt.GrvtClient',
         'extended': 'exchanges.extended.ExtendedClient',
         'apex': 'exchanges.apex.ApexClient',
+        'ondo': 'exchanges.ondo.OndoClient',
     }
 
     @classmethod

@@ -8,7 +8,7 @@
 
 ## Multi-Exchange Trading Bot
 
-A modular trading bot that supports multiple exchanges including EdgeX, Backpack, Paradex, Aster, Lighter, GRVT, and Extended. The bot implements an automated strategy that places orders and automatically closes them at a profit.
+A modular trading bot that supports multiple exchanges including EdgeX, Backpack, Paradex, Aster, Lighter, GRVT, Extended, ApeX, and Ondo Perps. The bot implements an automated strategy that places orders and automatically closes them at a profit.
 
 ## Referral Links (Enjoy fee rebates and benefits)
 
@@ -265,6 +265,12 @@ ETH:
 python runbot.py --exchange extended --ticker ETH --quantity 0.1 --take-profit 0 --max-orders 40 --wait-time 450 --grid-step 0.01
 ```
 
+### Ondo Perps:
+
+```bash
+python runbot.py --exchange ondo --ticker AAPL --quantity 1 --take-profit 0.02 --max-orders 40 --wait-time 450 --grid-step 0.1
+```
+
 ## 🆕 Hedge Mode
 
 The new Hedge Mode (`hedge_mode.py`) is an trading strategy that reduces risk by simultaneously hedging trades across two exchanges:
@@ -365,6 +371,15 @@ python hedge_mode.py --exchange edgex --ticker BTC --size 0.001 --iter 20
 - `APEX_API_KEY_SECRET`: Your Apex API key secret
 - `APEX_OMNI_KEY_SEED`: Your Apex Omni key seed
 
+#### Ondo Perps Configuration
+
+- `ONDO_KEY_ID`: API key ID, including the `ondoKeyId_` prefix
+- `ONDO_API_SECRET`: API secret, including the `ondoApiSecret_` prefix
+- `ONDO_BASE_URL`: Optional REST base URL (default: `https://api.ondoperps.xyz`)
+- `ONDO_WS_URL`: Optional WebSocket URL (default: `wss://api.ondoperps.xyz/ws`)
+
+Pass the base asset as `--ticker`, for example `AAPL`, `NVDA`, or `ETH`. The client resolves it to the perpetual market, such as `AAPL-USD.P`.
+
 **How to get LIGHTER_ACCOUNT_INDEX**:
 
 1. Add your wallet address to the end of the following URL:
@@ -379,7 +394,7 @@ python hedge_mode.py --exchange edgex --ticker BTC --size 0.001 --iter 20
 
 ### Command Line Arguments
 
-- `--exchange`: Exchange to use: 'edgex', 'backpack', 'paradex', 'aster', 'lighter', 'grvt', or 'extended' (default: edgex)
+- `--exchange`: Exchange to use: 'edgex', 'backpack', 'paradex', 'aster', 'lighter', 'grvt', 'extended', 'apex', or 'ondo' (default: edgex)
 - `--ticker`: Base asset symbol (e.g., ETH, BTC, SOL). Contract ID is auto-resolved.
 - `--quantity`: Order quantity (default: 0.1)
 - `--take-profit`: Take profit percent (e.g., 0.02 means 0.02%)

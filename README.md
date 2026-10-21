@@ -12,7 +12,7 @@
 
 ## 自动交易机器人
 
-一个支持多个交易所（目前包括 EdgeX, Backpack, Paradex, Aster, Lighter, grvt, Extended）的模块化交易机器人。该机器人实现了自动下单并在盈利时自动平仓的策略，主要目的是取得高交易量。
+一个支持多个交易所（目前包括 EdgeX, Backpack, Paradex, Aster, Lighter, grvt, Extended, ApeX, Ondo Perps）的模块化交易机器人。该机器人实现了自动下单并在盈利时自动平仓的策略，主要目的是取得高交易量。
 
 ## 邀请链接 (获得返佣以及福利)
 
@@ -284,6 +284,12 @@ ETH：
 python runbot.py --exchange extended --ticker ETH --quantity 0.1 --take-profit 0 --max-orders 40 --wait-time 450 --grid-step 0.1
 ```
 
+### Ondo Perps：
+
+```bash
+python runbot.py --exchange ondo --ticker AAPL --quantity 1 --take-profit 0.02 --max-orders 40 --wait-time 450 --grid-step 0.1
+```
+
 ## 🆕 对冲模式 (Hedge Mode)
 
 新增的对冲模式 (`hedge_mode.py`) 是一个新的交易策略，通过同时在两个交易所进行对冲交易来降低风险：
@@ -391,6 +397,15 @@ python hedge_mode.py --exchange edgex --ticker BTC --size 0.001 --iter 20
 - `APEX_API_KEY_SECRET`: 您的 Apex API 密钥私钥
 - `APEX_OMNI_KEY_SEED`: 您的 Apex Omni 密钥种子
 
+#### Ondo Perps 配置
+
+- `ONDO_KEY_ID`: API Key ID，保留 `ondoKeyId_` 前缀
+- `ONDO_API_SECRET`: API Secret，保留 `ondoApiSecret_` 前缀
+- `ONDO_BASE_URL`: REST 地址，可选，默认 `https://api.ondoperps.xyz`
+- `ONDO_WS_URL`: WebSocket 地址，可选，默认 `wss://api.ondoperps.xyz/ws`
+
+`--ticker` 传标的本身，例如 `AAPL`、`NVDA`、`ETH`。程序会解析成 `AAPL-USD.P` 这类永续合约。
+
 **获取 LIGHTER_ACCOUNT_INDEX 的方法**：
 
 1. 在下面的网址最后加上你的钱包地址：
@@ -405,7 +420,7 @@ python hedge_mode.py --exchange edgex --ticker BTC --size 0.001 --iter 20
 
 ### 命令行参数
 
-- `--exchange`: 使用的交易所：'edgex'、'backpack'、'paradex'、'aster'、'lighter'、'grvt' 或 'extended'（默认：edgex）
+- `--exchange`: 使用的交易所：'edgex'、'backpack'、'paradex'、'aster'、'lighter'、'grvt'、'extended'、'apex' 或 'ondo'（默认：edgex）
 - `--ticker`: 标的资产符号（例如：ETH、BTC、SOL）。合约 ID 自动解析。
 - `--quantity`: 订单数量（默认：0.1）
 - `--take-profit`: 止盈百分比（例如 0.02 表示 0.02%）
